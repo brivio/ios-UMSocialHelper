@@ -16,4 +16,6 @@ Pod::Spec.new do |s|
   s.vendored_libraries  = 'source/**/*.a'
   s.vendored_frameworks  = 'source/**/*.framework'
   s.resources='source/**/*.bundle'
+  s.frameworks='Security','SystemConfiguration','CoreGraphics','CoreTelephony'
+  s.libraries='iconv','sqlite3','stdc++','z'
 end
