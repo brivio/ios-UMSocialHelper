@@ -3,22 +3,27 @@
 #import "UMSocialSnsPlatformManager.h"
 #import "UMSocialConfig.h"
 #import "UMSocialWechatHandler.h"
+#import "TencentApiInterface.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialAccountManager.h"
-#import "WXApi.h"
+
+@implementation UMSocialHelperConfig
+@end
 
 @implementation UMSocialHelper {
     NSString *_url;
+    UMSocialHelperConfig *_config;
 }
-- (instancetype)init {
+- (instancetype)initWithConfig:(UMSocialHelperConfig *)config {
+    _config=config;
     self = [super init];
     if (self) {
         _TYPE_QQ = @"qq";
         _TYPE_WEIBO = @"wb";
         _TYPE_WEIXIN = @"wx";
 
-//        [UMSocialData setAppKey:UM_APP_KEY];
+        [UMSocialData setAppKey:_config.um_app_key];
         //打开调试log的开关
         [UMSocialData openLog:NO];
     }
@@ -84,27 +89,27 @@
     [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@ %@", content, url];
     NSURL *imgUrl = [NSURL URLWithString:img];
 
-//    [UMSocialSnsService presentSnsIconSheetView:controller
-//                                         appKey:UM_APP_KEY
-//                                      shareText:content
-//                                     shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:imgUrl]]
-//                                shareToSnsNames:names
-//                                       delegate:self];
+    [UMSocialSnsService presentSnsIconSheetView:controller
+                                         appKey:_config.um_app_key
+                                      shareText:content
+                                     shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:imgUrl]]
+                                shareToSnsNames:names
+                                       delegate:self];
 }
 
 - (void)setup {
     [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ, UMShareToQzone, UMShareToWechatTimeline]];
 
-//    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WB_APP_KEY RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-//
-//    //微信
-//    [UMSocialWechatHandler setWXAppId:WX_APP_KEY
-//                            appSecret:WX_APP_SECRET
-//                                  url:_url];
-//    //QQ、QQ空间
-//    [UMSocialQQHandler setQQWithAppId:QQ_APP_KEY
-//                               appKey:QQ_APP_SECRET
-//                                  url:_url];
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:_config.wb_app_key RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+
+    //微信
+    [UMSocialWechatHandler setWXAppId:_config.wx_app_key
+                            appSecret:_config.wx_app_secret
+                                  url:_url];
+    //QQ、QQ空间
+    [UMSocialQQHandler setQQWithAppId:_config.qq_app_key
+                               appKey:_config.qq_app_secret
+                                  url:_url];
 }
 
 - (BOOL)isInstalled:(NSString *)type {
