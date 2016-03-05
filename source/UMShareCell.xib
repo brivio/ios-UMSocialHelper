@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="UMShareCell">
+            <rect key="frame" x="0.0" y="0.0" width="225" height="181"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="225" height="181"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r4f-rZ-n6E">
+                        <rect key="frame" x="57" y="0.0" width="112.5" height="112.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="r4f-rZ-n6E" secondAttribute="height" id="yJQ-ZD-KPx"/>
+                            <constraint firstAttribute="width" secondItem="r4f-rZ-n6E" secondAttribute="height" id="yNs-Qw-VDh"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="yNs-Qw-VDh"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giS-bc-Pd1">
+                        <rect key="frame" x="98.5" y="120.5" width="31" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="r4f-rZ-n6E" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="4JU-WJ-NNv"/>
+                <constraint firstItem="r4f-rZ-n6E" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.5" id="BCu-3i-PmF"/>
+                <constraint firstAttribute="bottom" secondItem="giS-bc-Pd1" secondAttribute="bottom" id="TRH-Ip-KGE"/>
+                <constraint firstItem="giS-bc-Pd1" firstAttribute="top" secondItem="r4f-rZ-n6E" secondAttribute="bottom" constant="8" id="ZXt-Pk-bbz"/>
+                <constraint firstItem="giS-bc-Pd1" firstAttribute="centerX" secondItem="r4f-rZ-n6E" secondAttribute="centerX" id="m3c-pa-nju"/>
+                <constraint firstItem="r4f-rZ-n6E" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vFs-TE-QR8"/>
+            </constraints>
+            <size key="customSize" width="225" height="181"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="TRH-Ip-KGE"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="iconImage" destination="r4f-rZ-n6E" id="2r9-VG-A58"/>
+                <outlet property="titleLabel" destination="giS-bc-Pd1" id="wu5-2B-Ys7"/>
+            </connections>
+            <point key="canvasLocation" x="496.5" y="278.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

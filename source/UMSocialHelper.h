@@ -18,6 +18,8 @@ typedef void(^UMSocialLoginCallback)(NSString *type, NSString *access_token, NSS
 @property(strong, nonatomic) NSString *TYPE_QQ;
 @property(strong, nonatomic) NSString *TYPE_WEIBO;
 @property(strong, nonatomic) NSString *TYPE_WEIXIN;
+@property(strong, nonatomic) UIColor *shareBGColor;
+@property(strong, nonatomic) UIColor *shareHoverColor;
 
 - (instancetype)initWithConfig:(UMSocialHelperConfig *)config;
 
