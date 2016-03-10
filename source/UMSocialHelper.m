@@ -55,8 +55,8 @@
             [UMSocialControllerService defaultControllerService], YES,
             ^(UMSocialResponseEntity *response) {
                 if (response.responseCode == UMSResponseCodeSuccess) {
-                    UMSocialAccountEntity *account = [[UMSocialAccountManager socialAccountDictionary]
-                            valueForKey:_type];
+                    UMSocialAccountEntity *account = [[UMSocialAccountManager socialAccountDictionary] valueForKey:_type];
+
                     if (account) {
                         NSString *openid = account.openId;
                         if (type == _TYPE_WEIBO) {
