@@ -24,7 +24,7 @@
     [listCV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view).offset(8);
     }];
-    [_controller.view showProgressHUD:@"加载中"];
+    [_controller.view showProgressHUD];
     [SDWebImageManager.sharedManager
             downloadImageWithURL:[NSURL URLWithString:_shareImg]
                          options:0

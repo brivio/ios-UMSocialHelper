@@ -2,6 +2,7 @@
 #import "UMPlatform.h"
 #import "UIView+Extend.h"
 #import "UMSocialSnsPlatformManager.h"
+#import "UMSocialHelper.h"
 
 @implementation UMShareCell
 

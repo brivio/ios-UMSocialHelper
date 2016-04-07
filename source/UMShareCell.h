@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 
 @class UMPlatform;
+@class UMSocialHelper;
 
 @interface UMShareCell : UICollectionViewCell
 @property(weak, nonatomic) IBOutlet UIImageView *iconImage;

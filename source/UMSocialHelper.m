@@ -11,6 +11,7 @@
 #import "UMShareVC.h"
 #import "View+MASAdditions.h"
 #import "Extend.h"
+#import "SDWebImageManager.h"
 #import <pop/POP.h>
 
 @implementation UMSocialHelperConfig
@@ -70,9 +71,7 @@
             });
 }
 
-- (void)doShare:(UIViewController *)controller title:(NSString *)title content:(NSString *)content url:(NSString *)url img:(NSString *)img {
-    _url = url;
-    [self setup];
+- (void)setupShare:(NSString *)title content:(NSString *)content url:(NSString *)url img:(NSString *)img {
     [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = content;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = url;
@@ -85,6 +84,52 @@
     [UMSocialData defaultData].extConfig.qzoneData.title = title;
 
     [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@ %@", content, url];
+}
+
+- (void)doShare:(UIViewController *)controller platform:(NSString *)platform title:(NSString *)title content:(NSString *)content url:(NSString *)url img:(NSString *)img callback:(SimpleCallback)callback {
+    _url = url;
+    [self setup];
+    [self setupShare:title content:content url:url img:img];
+
+    [controller.view showProgressHUD];
+    [SDWebImageManager.sharedManager
+            downloadImageWithURL:[NSURL URLWithString:img]
+                         options:0
+                        progress:nil
+                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//                           if ([platform isEqualToString:UMShareToSina]) {
+//                               [[UMSocialControllerService defaultControllerService]
+//                                       setShareText:content
+//                                         shareImage:image
+//                                   socialUIDelegate:nil];
+//
+//                               [UMSocialSnsPlatformManager getSocialPlatformWithName:platform].snsClickHandler(
+//                                       controller,
+//                                       [UMSocialControllerService defaultControllerService],
+//                                       YES);
+//                           } else {
+                           [[UMSocialDataService defaultDataService]
+                                   postSNSWithTypes:@[platform]
+                                            content:content
+                                              image:image
+                                           location:nil
+                                        urlResource:nil
+                                presentedController:controller
+                                         completion:^(UMSocialResponseEntity *response) {
+                                             callback();
+//                                             if (response.responseCode == UMSResponseCodeSuccess) {
+//
+//                                             }
+                                         }];
+//                           }
+                           [controller.view hideProgressHUD];
+                       }];
+}
+
+- (void)doShare:(UIViewController *)controller title:(NSString *)title content:(NSString *)content url:(NSString *)url img:(NSString *)img {
+    _url = url;
+    [self setup];
+    [self setupShare:title content:content url:url img:img];
 
     CGFloat shareViewHeight = [UIScreen width] / 2;
     if (_shadowView == nil) {

@@ -21,6 +21,8 @@ typedef void(^UMSocialLoginCallback)(NSString *type, NSString *access_token, NSS
 @property(strong, nonatomic) UIColor *shareBGColor;
 @property(strong, nonatomic) UIColor *shareHoverColor;
 
+- (void)doShare:(UIViewController *)controller platform:(NSString *)platform title:(NSString *)title content:(NSString *)content url:(NSString *)url img:(NSString *)img callback:(void (^)())callback;
+
 - (instancetype)initWithConfig:(UMSocialHelperConfig *)config;
 
 - (void)doLogin:(UIViewController *)controller type:(NSString *)type callback:(UMSocialLoginCallback)callback;
